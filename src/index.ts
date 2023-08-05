@@ -1,3 +1,5 @@
+import { makeOnTimeDrivenController } from './infrastructures/di'
+
 declare const global: {
   [x: string]: unknown
 }
@@ -16,28 +18,15 @@ const printError = (err: unknown): void => {
   Logger.log(err)
 }
 
-global.doGet = (
-  e: GoogleAppsScript.Events.DoGet,
-): GoogleAppsScript.HTML.HtmlOutput => {
+// 時間ベースのトリガーで実行される関数
+global.onTimeDriven = (): GoogleAppsScript.Content.TextOutput => {
   try {
-    const params = JSON.stringify(e)
-    return HtmlService.createHtmlOutput(params)
+    makeOnTimeDrivenController().handler()
   } catch (err) {
     printError(err)
   }
 
-  return HtmlService.createHtmlOutput()
-}
-
-global.doPost = (
-  e: GoogleAppsScript.Events.DoPost,
-): GoogleAppsScript.HTML.HtmlOutput => {
-  try {
-    const params = JSON.stringify(e)
-    return HtmlService.createHtmlOutput(params)
-  } catch (err) {
-    printError(err)
-  }
-
-  return HtmlService.createHtmlOutput()
+  return ContentService.createTextOutput(
+    JSON.stringify({ content: 'post ok' }),
+  ).setMimeType(ContentService.MimeType.JSON)
 }
