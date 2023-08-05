@@ -11,6 +11,9 @@ export class LineClient {
     })
   }
 
+  /**
+   * @inheritdoc
+   */
   public replyMessage(
     replyToken: string,
     messages: Message | Message[],
@@ -25,6 +28,9 @@ export class LineClient {
     this.http.post(url, body)
   }
 
+  /**
+   * @inheritdoc
+   */
   public pushMessage(
     to: string,
     messages: Message | Message[],

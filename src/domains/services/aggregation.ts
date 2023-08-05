@@ -4,6 +4,9 @@ import { Payment } from '@/domains/models/payment'
 import { Users } from '@/domains/models/user/users'
 
 export class AggregationService {
+  /**
+   * 出費を集計する
+   */
   public aggregatePayments(payments: Payment[], users: Users): AggregatResult {
     let womanPrice = 0
     let manPrice = 0
@@ -18,13 +21,14 @@ export class AggregationService {
       }
     })
 
-    const price = Math.ceil(Math.abs(womanPrice - manPrice) / 2)
+    // 小数点以下は切り上げ
+    const diffPrice = Math.ceil(Math.abs(womanPrice - manPrice) / 2)
 
     if (womanPrice < manPrice) {
       return new AggregatResult(
         USER_TYPE.woman,
         USER_TYPE.man,
-        price,
+        diffPrice,
         womanPrice,
         manPrice,
       )
@@ -32,7 +36,7 @@ export class AggregationService {
     return new AggregatResult(
       USER_TYPE.man,
       USER_TYPE.woman,
-      price,
+      diffPrice,
       womanPrice,
       manPrice,
     )

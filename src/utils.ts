@@ -10,7 +10,7 @@ export const toArray = <T>(maybeArr: T | T[]): T[] => {
   return Array.isArray(maybeArr) ? maybeArr : [maybeArr]
 }
 
-export const formatMonth = (date: Date, separator: string = '/'): string => {
+export const formatMonth = (date: Date, separator: string = '-'): string => {
   const y = date.getFullYear()
   const m = zeroPadding(date.getMonth() + 1, 2)
   return y + separator + m

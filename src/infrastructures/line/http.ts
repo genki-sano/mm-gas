@@ -23,6 +23,12 @@ export class HttpClient {
       payload: JSON.stringify(body),
     })
 
+    this._responseParser(ret)
+  }
+
+  private _responseParser(
+    ret: GoogleAppsScript.URL_Fetch.HTTPResponse,
+  ): GoogleAppsScript.URL_Fetch.HTTPResponse {
     if (ret.getResponseCode() !== 200) {
       const result: WebAPICallErrorResult = JSON.parse(ret.getContentText())
       throw new Error(
@@ -30,6 +36,6 @@ export class HttpClient {
       )
     }
 
-    return
+    return ret
   }
 }

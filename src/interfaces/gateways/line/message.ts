@@ -9,6 +9,9 @@ export class MessageGateway implements IMessageGateway {
     this.client = client
   }
 
+  /**
+   * @inheritdoc
+   */
   public replyMessage(
     replyToken: string,
     messages: MessageModel[],
@@ -21,6 +24,9 @@ export class MessageGateway implements IMessageGateway {
     )
   }
 
+  /**
+   * @inheritdoc
+   */
   public pushMessage(
     to: string,
     messages: MessageModel[],

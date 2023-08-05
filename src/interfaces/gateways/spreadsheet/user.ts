@@ -12,6 +12,9 @@ export class UserGateway implements IUserGateway {
     this.ss = ss
   }
 
+  /**
+   * @inheritdoc
+   */
   public getUsers(): Users {
     const sheet = this.ss.newSheet('users')
     if (!sheet) {
@@ -27,7 +30,7 @@ export class UserGateway implements IUserGateway {
       throw new Error('必要なユーザーが見つかりません。')
     }
 
-    const values = sheet.getValueLists(
+    const values = sheet.getRecordValues(
       startRow,
       startColumn,
       lastRow,

@@ -11,6 +11,9 @@ export class PaymentGateway implements IPaymentGateway {
     this.ss = ss
   }
 
+  /**
+   * @inheritdoc
+   */
   public getInTargetMonth(date: Date, users: Users): Payment[] {
     const sheet = this.ss.newSheet(formatMonth(date, '-'))
     if (!sheet) {
@@ -26,7 +29,7 @@ export class PaymentGateway implements IPaymentGateway {
       return []
     }
 
-    const values = sheet.getValueLists(
+    const values = sheet.getRecordValues(
       startRow,
       startColumn,
       lastRow,

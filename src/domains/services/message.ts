@@ -6,8 +6,11 @@ import { FlexContainer } from '@/type/line/message'
 import { numberWithDelimiter } from '@/utils'
 
 export class MessageService {
+  /**
+   * 月次精算レポートを作成
+   */
   public getMonthlyReportMessages(
-    aggregate: AggregatResult,
+    result: AggregatResult,
     users: Users,
   ): MessageModel[] {
     const altText = '先月の精算をしてね！'
@@ -29,7 +32,7 @@ export class MessageService {
               },
               {
                 type: 'text',
-                text: users.getUserName(aggregate.fromUserType),
+                text: users.getUserName(result.fromUserType),
                 color: '#ffffff',
                 size: 'xl',
                 flex: 4,
@@ -49,7 +52,7 @@ export class MessageService {
               },
               {
                 type: 'text',
-                text: users.getUserName(aggregate.toUserType),
+                text: users.getUserName(result.toUserType),
                 color: '#ffffff',
                 size: 'xl',
                 flex: 4,
@@ -75,7 +78,7 @@ export class MessageService {
           },
           {
             type: 'text',
-            text: `${numberWithDelimiter(aggregate.price)}円`,
+            text: `${numberWithDelimiter(result.diffPrice)}円`,
             weight: 'bold',
             size: '3xl',
             color: '#1DB446',
@@ -102,7 +105,7 @@ export class MessageService {
                   },
                   {
                     type: 'text',
-                    text: `${numberWithDelimiter(aggregate.womanPrice)}円`,
+                    text: `${numberWithDelimiter(result.womanPrice)}円`,
                     align: 'end',
                   },
                 ],
@@ -119,7 +122,7 @@ export class MessageService {
                   },
                   {
                     type: 'text',
-                    text: `${numberWithDelimiter(aggregate.manPrice)}円`,
+                    text: `${numberWithDelimiter(result.manPrice)}円`,
                     align: 'end',
                   },
                 ],
