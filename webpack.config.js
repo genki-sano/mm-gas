@@ -27,5 +27,5 @@ module.exports = {
       },
     ],
   },
-  plugins: [new GasPlugin(), new Es3ifyPlugin()],
+  plugins: [new GasPlugin()],
 }
