@@ -1,0 +1,27 @@
+# Ignore built ts files
+dist/index.js
+
+# Coverage reports
+coverage
+
+# API keys and secrets
+.env
+
+# Dependency directories
+node_modules
+bower_components
+
+# Typescript
+*.tsbuildinfo
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# clasp
+.clasp.json
